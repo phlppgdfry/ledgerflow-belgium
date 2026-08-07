@@ -1,0 +1,19 @@
+{
+  "name": "@ledgerflow/infra",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "preview": "pulumi preview",
+    "up": "pulumi up"
+  },
+  "dependencies": {
+    "@pulumi/aws": "^6.79.0",
+    "@pulumi/pulumi": "^3.167.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3"
+  }
+}

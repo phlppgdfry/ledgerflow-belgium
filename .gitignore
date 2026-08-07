@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.pulumi/
+coverage/
+.DS_Store

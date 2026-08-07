@@ -1,0 +1,4 @@
+name: ledgerflow-belgium
+runtime:
+  name: nodejs
+description: Event-driven AWS reference infrastructure for LedgerFlow Belgium.

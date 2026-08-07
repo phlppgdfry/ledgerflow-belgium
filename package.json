@@ -1,0 +1,25 @@
+{
+  "name": "ledgerflow-belgium",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A financial operations cockpit for Belgian sole proprietors.",
+  "packageManager": "npm@11.16.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "infra"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@ledgerflow/web",
+    "dev:api": "npm run dev --workspace=@ledgerflow/api",
+    "build": "npm run build --workspace=@ledgerflow/core && npm run build --workspace=@ledgerflow/api && npm run build --workspace=@ledgerflow/web && npm run build --workspace=@ledgerflow/infra",
+    "test": "npm run test --workspace=@ledgerflow/core",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.3"
+  }
+}

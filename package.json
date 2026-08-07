@@ -14,7 +14,7 @@
     "dev:api": "npm run dev --workspace=@ledgerflow/api",
     "build": "npm run build --workspace=@ledgerflow/core && npm run build --workspace=@ledgerflow/api && npm run build --workspace=@ledgerflow/web && npm run build --workspace=@ledgerflow/infra",
     "test": "npm run test --workspace=@ledgerflow/core",
-    "typecheck": "npm run typecheck --workspaces --if-present",
+    "typecheck": "npm run build --workspace=@ledgerflow/core && npm run typecheck --workspaces --if-present",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

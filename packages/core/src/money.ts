@@ -30,3 +30,23 @@ export function splitVat(
   const netCents = Math.round((grossCents * 10_000) / (10_000 + rateBasisPoints));
   return { net: euro(netCents), vat: euro(grossCents - netCents), gross: euro(grossCents) };
 }
+
+/**
+ * Parses what a Belgian user types ("1.234,56", "99,8", "99.80", "€ 12") into cents
+ * using string arithmetic only — no float multiplication, so "0,29" is exactly 29 cents.
+ */
+export function parseEuroToCents(input: string): number {
+  let value = input.replace(/[€\s]/g, '');
+  if (!/^\d[\d.,]*$/.test(value)) throw new Error('Enter an amount like 99,80.');
+  const lastSep = Math.max(value.lastIndexOf(','), value.lastIndexOf('.'));
+  const decimals = lastSep === -1 ? '' : value.slice(lastSep + 1);
+  if (lastSep !== -1 && decimals.length <= 2) {
+    value = value.slice(0, lastSep).replace(/[.,]/g, '') + '.' + decimals;
+  } else {
+    value = value.replace(/[.,]/g, ''); // thousands separators only
+  }
+  const [whole, fraction = ''] = value.split('.');
+  const cents = Number(whole) * 100 + Number(fraction.padEnd(2, '0'));
+  if (!Number.isSafeInteger(cents)) throw new Error('Amount is too large.');
+  return cents;
+}

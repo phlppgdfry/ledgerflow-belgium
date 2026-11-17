@@ -246,7 +246,7 @@ h2 {
 }
 .document-row {
   display: grid;
-  grid-template-columns: 38px minmax(150px, 1.6fr) 0.75fr 0.8fr 0.85fr auto;
+  grid-template-columns: 38px minmax(150px, 1.6fr) 0.75fr 0.8fr 0.85fr 190px;
   align-items: center;
   gap: 12px;
   padding: 15px 24px;
@@ -419,7 +419,7 @@ h2 {
     grid-template-columns: repeat(2, 1fr);
   }
   .document-row {
-    grid-template-columns: 34px 1fr auto;
+    grid-template-columns: 34px 1fr auto auto;
   }
   .doc-date,
   .doc-amount,
@@ -473,7 +473,7 @@ h2 {
   }
   .document-row {
     padding: 13px 16px;
-    grid-template-columns: 31px 1fr auto;
+    grid-template-columns: 31px 1fr auto auto;
   }
   .advance {
     display: none;
@@ -484,4 +484,338 @@ h2 {
   .audit ol {
     padding: 0 18px 12px;
   }
+}
+
+/* --- v2: actions, drawer, import dialog, demo banner --------------------------------- */
+.demo-banner {
+  background: #b9f37b;
+  color: #0b2139;
+  font-size: 13px;
+  padding: 8px 16px;
+  text-align: center;
+}
+.demo-banner a {
+  margin-left: 8px;
+}
+.demo-banner a {
+  color: inherit;
+  font-weight: 600;
+}
+.toast {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+.toast code {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  opacity: 0.75;
+  margin-left: 6px;
+}
+.toast.error {
+  background: #fdecec;
+  border-color: #f2b8b5;
+  color: #7a1d1a;
+}
+.toast.info {
+  background: #eef4ff;
+  border-color: #c9d8f5;
+  color: #17366a;
+}
+.empty {
+  padding: 24px;
+  color: #6b7a8c;
+}
+.doc-main {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.doc-main:focus-visible,
+.details:focus-visible,
+.advance:focus-visible {
+  outline: 3px solid #1f7a63;
+  outline-offset: 2px;
+}
+.doc-main strong:hover {
+  text-decoration: underline;
+}
+.doc-date span.soon {
+  color: #b45309;
+  font-weight: 600;
+}
+.document-row.selected {
+  background: #f6faf8;
+}
+.row-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+.details {
+  border: 1px solid #dfe5ea;
+  background: #fff;
+  border-radius: 8px;
+  width: 34px;
+  color: #10243e;
+}
+.advance:disabled,
+.drawer-actions button:disabled {
+  opacity: 0.5;
+  cursor: progress;
+}
+.link {
+  border: 0;
+  background: none;
+  color: #1f7a63;
+  font-weight: 600;
+  font-size: 13px;
+}
+.timeline-dot.status_changed {
+  background: #f0b429;
+}
+.timeline-dot.document_posted {
+  background: #10243e;
+}
+.timeline-dot.field_corrected {
+  background: #7c8ea3;
+}
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 28, 52, 0.38);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 20;
+  animation: fade 0.15s ease-out;
+}
+.drawer,
+.dialog {
+  background: #fff;
+  width: min(460px, 100%);
+  height: 100%;
+  overflow-y: auto;
+  padding: 28px;
+  box-shadow: -20px 0 50px rgba(9, 28, 52, 0.18);
+  animation: slide 0.2s ease-out;
+}
+.dialog {
+  width: min(560px, 100%);
+}
+.drawer header,
+.dialog header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.drawer h2,
+.dialog h2 {
+  margin: 2px 0;
+  font-size: 24px;
+}
+.drawer h3 {
+  margin: 26px 0 10px;
+  font-size: 15px;
+}
+.muted {
+  color: #6b7a8c;
+  margin: 0;
+  font-size: 14px;
+}
+.close {
+  border: 0;
+  background: #f1f4f6;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  font-size: 20px;
+  color: #10243e;
+}
+.status.big {
+  font-size: 12px;
+  padding: 6px 10px;
+}
+.vat,
+.facts {
+  margin: 18px 0 0;
+  border: 1px solid #e6ebef;
+  border-radius: 12px;
+  padding: 4px 16px;
+}
+.vat div,
+.facts div {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid #f0f3f5;
+  gap: 12px;
+}
+.vat div:last-child,
+.facts div:last-child {
+  border: 0;
+}
+.vat dt,
+.facts dt {
+  color: #6b7a8c;
+}
+.vat dd,
+.facts dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+}
+.vat .total dd {
+  font-size: 18px;
+}
+.facts code,
+.history code,
+.key code {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  background: #f1f4f6;
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+.facts dd.low {
+  color: #b45309;
+}
+.drawer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+.drawer-actions button {
+  border: 1px solid #dfe5ea;
+  background: #fff;
+  border-radius: 10px;
+  padding: 9px 14px;
+  font-weight: 600;
+  color: #10243e;
+}
+.drawer-actions button.primary {
+  background: #1f7a63;
+  border-color: #1f7a63;
+  color: #fff;
+}
+.drawer-actions button.danger {
+  color: #b42318;
+  border-color: #f2b8b5;
+}
+.guard {
+  margin-top: 10px;
+  border: 1px dashed #c3ccd5;
+  background: #fafbfc;
+  border-radius: 10px;
+  padding: 8px 12px;
+  color: #6b7a8c;
+  font-size: 13px;
+}
+.history {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-left: 2px solid #e6ebef;
+}
+.history li {
+  padding: 0 0 14px 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 14px;
+}
+.history li::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #1f7a63;
+}
+.history span {
+  color: #6b7a8c;
+  font-size: 12px;
+}
+.dialog .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.dialog label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #33475b;
+}
+.dialog .wide {
+  grid-column: 1 / -1;
+}
+.dialog input,
+.dialog select {
+  font: inherit;
+  font-weight: 400;
+  border: 1px solid #d5dde4;
+  border-radius: 9px;
+  padding: 9px 10px;
+  color: #10243e;
+  background: #fff;
+}
+.dialog input:focus,
+.dialog select:focus {
+  outline: 3px solid rgba(31, 122, 99, 0.25);
+  border-color: #1f7a63;
+}
+.preview {
+  margin: 16px 0 0;
+  padding: 10px 12px;
+  background: #f3faf6;
+  border-radius: 10px;
+  font-size: 14px;
+}
+.key {
+  font-size: 13px;
+  color: #6b7a8c;
+}
+.form-error {
+  color: #b42318;
+  font-size: 14px;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes slide {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+}
+@media (max-width: 640px) {
+  .dialog .grid {
+    grid-template-columns: 1fr;
+  }
+  .row-actions .advance {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scrim,
+  .drawer,
+  .dialog {
+    animation: none;
+  }
+}
+.toast.inline {
+  margin: 14px 0 0;
+  font-size: 13px;
 }
